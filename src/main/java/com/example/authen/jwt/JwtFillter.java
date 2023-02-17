@@ -20,7 +20,9 @@ public class JwtFillter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String jwt = parseJwt(request);
-        jwtUltity.validateJwtToken(jwt);
+        if(jwt != null){
+            jwtUltity.validateJwtToken(jwt);
+        }
         filterChain.doFilter(request, response);
 
     }
